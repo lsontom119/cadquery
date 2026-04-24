@@ -1,80 +1,127 @@
-from importlib.metadata import version, PackageNotFoundError
+"""CadQuery - A parametric 3D CAD scripting framework.
 
-try:
-    __version__ = version("cadquery")
-except PackageNotFoundError:
-    # package is not installed
-    __version__ = "2.8.0dev"
+CadQuery is an intuitive, easy-to-use Python module for building parametric
+3D CAD models. It is inspired by OpenSCAD but uses Python instead of a
+domain-specific language.
 
-# these items point to the OCC implementation
-from .occ_impl.geom import Plane, BoundBox, Vector, Matrix, Location
+Example usage::
+
+    import cadquery as cq
+
+    result = cq.Workplane("XY").box(1, 2, 3)
+"""
+
+from .cq import (
+    CQContext,
+    CQObject,
+    Workplane,
+)
+from .assembly import (
+    Assembly,
+    Color,
+    Constraint,
+)
+from .occ_impl.geom import (
+    BoundBox,
+    Location,
+    Matrix,
+    Plane,
+    Vector,
+)
 from .occ_impl.shapes import (
-    Shape,
-    Vertex,
+    compound,
+    Compound,
     Edge,
     Face,
-    Wire,
-    Solid,
     Shell,
-    Compound,
-    sortWiresByBuildOrder,
+    Solid,
+    Shape,
+    Vertex,
+    Wire,
 )
-from .occ_impl import exporters
-from .occ_impl import importers
-
-# these items are the common implementation
-
-# the order of these matter
+from .occ_impl.exporters import (
+    exporters,
+)
 from .selectors import (
-    NearestToPointSelector,
-    ParallelDirSelector,
-    DirectionSelector,
-    PerpendicularDirSelector,
-    TypeSelector,
+    AndSelector,
+    AreaNthSelector,
+    BaseDirSelector,
+    BinarySelector,
+    BoxSelector,
+    CenterNthSelector,
     DirectionMinMaxSelector,
+    DirectionNthSelector,
+    DirectionSelector,
+    EdgeLengthSelector,
+    FaceAreaSelector,
+    InverseSelector,
+    LengthNthSelector,
+    NearestToPointSelector,
+    OrSelector,
+    ParallelDirSelector,
+    PerpendicularDirSelector,
+    RadiusNthSelector,
     StringSyntaxSelector,
-    Selector,
+    SubtractSelector,
+    SumSelector,
+    TypeSelector,
 )
 from .sketch import Sketch
-from .cq import CQ, Workplane
-from .assembly import Assembly, Color, Constraint, Material
-from . import selectors
-from . import plugins
 
+__version__ = "2.4.0"
 
 __all__ = [
-    "CQ",
+    # Core workplane
+    "CQContext",
+    "CQObject",
     "Workplane",
+    # Assembly
     "Assembly",
     "Color",
     "Constraint",
-    "Material",
-    "plugins",
-    "selectors",
-    "Plane",
+    # Geometry
     "BoundBox",
-    "Matrix",
-    "Vector",
     "Location",
-    "sortWiresByBuildOrder",
+    "Matrix",
+    "Plane",
+    "Vector",
+    # Shapes
+    "compound",
+    "Compound",
+    "Edge",
+    "Face",
+    "Shell",
+    "Solid",
     "Shape",
     "Vertex",
-    "Edge",
     "Wire",
-    "Face",
-    "Solid",
-    "Shell",
-    "Compound",
+    # Exporters
     "exporters",
-    "importers",
-    "NearestToPointSelector",
-    "ParallelDirSelector",
-    "DirectionSelector",
-    "PerpendicularDirSelector",
-    "TypeSelector",
+    # Selectors
+    "AndSelector",
+    "AreaNthSelector",
+    "BaseDirSelector",
+    "BinarySelector",
+    "BoxSelector",
+    "CenterNthSelector",
     "DirectionMinMaxSelector",
+    "DirectionNthSelector",
+    "DirectionSelector",
+    "EdgeLengthSelector",
+    "FaceAreaSelector",
+    "InverseSelector",
+    "LengthNthSelector",
+    "NearestToPointSelector",
+    "OrSelector",
+    "ParallelDirSelector",
+    "PerpendicularDirSelector",
+    "RadiusNthSelector",
     "StringSyntaxSelector",
-    "Selector",
-    "plugins",
+    "SubtractSelector",
+    "SumSelector",
+    "TypeSelector",
+    # Sketch
     "Sketch",
+    # Version
+    "__version__",
 ]
