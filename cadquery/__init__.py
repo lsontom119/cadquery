@@ -19,6 +19,8 @@ Personal notes:
 - For STL export: cq.exporters.export(result, "out.stl")
 - Vector and Location are handy for transforms; see occ_impl/geom.py
 - Selector chaining example: result.faces(">Z").edges("|X")
+- Shell.makeShell() is useful for thin-wall parts (e.g. enclosures)
+- Use Assembly.constrain() with "Fixed" to anchor parts before solving
 """
 
 from .cq import (
