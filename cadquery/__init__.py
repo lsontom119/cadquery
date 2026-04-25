@@ -12,6 +12,11 @@ Example usage::
 
 Note: This is a personal fork used for learning and experimentation.
 Upstream project: https://github.com/CadQuery/cadquery
+
+Personal notes:
+- Commonly used entry points: Workplane, Assembly, Sketch
+- For STEP export: cq.exporters.export(result, "out.step")
+- Vector and Location are handy for transforms; see occ_impl/geom.py
 """
 
 from .cq import (
