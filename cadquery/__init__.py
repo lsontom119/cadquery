@@ -16,7 +16,9 @@ Upstream project: https://github.com/CadQuery/cadquery
 Personal notes:
 - Commonly used entry points: Workplane, Assembly, Sketch
 - For STEP export: cq.exporters.export(result, "out.step")
+- For STL export: cq.exporters.export(result, "out.stl")
 - Vector and Location are handy for transforms; see occ_impl/geom.py
+- Selector chaining example: result.faces(">Z").edges("|X")
 """
 
 from .cq import (
